@@ -13,4 +13,11 @@ class AuthRepository {
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     await auth.signInWithEmailAndPassword(email: email, password: password);
   }
+
+  Future<void> createUserWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    await auth.createUserWithEmailAndPassword(email: email, password: password);
+  }
 }

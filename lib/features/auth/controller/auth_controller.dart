@@ -14,4 +14,11 @@ class AuthController {
   Future<void> signInWithEmailAndPassword(String email, String password) async {
     return authRepository.signInWithEmailAndPassword(email, password);
   }
+
+  Future<void> createUserWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    return authRepository.createUserWithEmailAndPassword(email, password);
+  }
 }

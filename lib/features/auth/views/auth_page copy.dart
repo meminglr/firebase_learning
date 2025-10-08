@@ -2,14 +2,14 @@ import 'package:firebase_learning/features/auth/controller/auth_controller.dart'
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class AuthPage extends StatefulWidget {
+  const AuthPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<AuthPage> createState() => _AuthPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _AuthPageState extends State<AuthPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
@@ -40,6 +40,12 @@ class _HomePageState extends State<HomePage> {
                   style: TextStyle(fontSize: 32, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Email boş olamaz";
+                    }
+                    return null;
+                  },
                   controller: _emailController,
                   decoration: InputDecoration(
                     border: OutlineInputBorder(
@@ -49,6 +55,12 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
                 TextFormField(
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "Şifre boş olamaz";
+                    }
+                    return null;
+                  },
                   controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
@@ -61,12 +73,14 @@ class _HomePageState extends State<HomePage> {
                 Consumer(
                   builder: (context, ref, child) => FilledButton(
                     onPressed: () {
-                      ref
-                          .read(authContrllerProvider)
-                          .signInWithEmailAndPassword(
-                            _emailController.text,
-                            _passwordController.text,
-                          );
+                      if (_formKey.currentState!.validate()) {
+                        ref
+                            .read(authContrllerProvider)
+                            .signInWithEmailAndPassword(
+                              _emailController.text,
+                              _passwordController.text,
+                            );
+                      }
                     },
                     child: Text("Giriş Yap"),
                   ),
