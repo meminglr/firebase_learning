@@ -1,9 +1,10 @@
 import 'package:firebase_learning/features/auth/controller/auth_controller.dart';
+import 'package:firebase_learning/features/auth/views/sign_up_info.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../screens/home.dart';
+import '../../../home/views/home.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -16,7 +17,7 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
-  bool isSignIn = false;
+  bool isSignIn = true;
 
   @override
   void dispose() {
@@ -88,13 +89,18 @@ class _AuthPageState extends State<AuthPage> {
                       _emailController.text,
                       _passwordController.text,
                     )
-                    .then((onValue) {
-                      isSignIn = !isSignIn;
-                      setState(() {});
-                    });
+                    .then(
+                      (onValue) => Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (builder) =>
+                              SignUpInfo(mail: _emailController.text),
+                        ),
+                      ),
+                    );
               }
             },
-            child: Text("Kayıt Ol"),
+            child: Text("Devam Et"),
           ),
         ),
         TextButton(onPressed: () {}, child: Text("Şifemi Unuttum")),

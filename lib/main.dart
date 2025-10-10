@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_learning/features/auth/views/sign_up_info.dart';
 import 'package:firebase_learning/firebase_options.dart';
 import 'package:firebase_learning/features/auth/views/auth_page.dart';
 import 'package:flutter/material.dart';
