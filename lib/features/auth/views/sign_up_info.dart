@@ -1,5 +1,5 @@
 import 'package:firebase_learning/features/auth/controller/auth_controller.dart';
-import 'package:firebase_learning/home/views/home.dart';
+import 'package:firebase_learning/home.dart';
 import 'package:firebase_learning/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,6 +21,15 @@ class _SignUpInfoState extends State<SignUpInfo> {
   final TextEditingController _userNameController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _surnameController.dispose();
+    _userNameController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -88,6 +97,8 @@ class _SignUpInfoState extends State<SignUpInfo> {
                   builder: (context, ref, child) => FilledButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
+                        isLoading = true;
+                        setState(() {});
                         UserModel userModel = UserModel(
                           name: _nameController.text,
                           surname: _surnameController.text,
@@ -101,14 +112,18 @@ class _SignUpInfoState extends State<SignUpInfo> {
                               () => Navigator.pushAndRemoveUntil(
                                 context,
                                 CupertinoPageRoute(
-                                  builder: (builder) => HomePage(),
+                                  builder: (builder) => Home(),
                                 ),
                                 (route) => false,
                               ),
                             );
+                        isLoading = false;
+                        setState(() {});
                       }
                     },
-                    child: Text("Devam Et"),
+                    child: isLoading
+                        ? CircularProgressIndicator()
+                        : Text("Devam Et"),
                   ),
                 ),
               ],

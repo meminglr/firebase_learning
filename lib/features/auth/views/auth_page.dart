@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../home/views/home.dart';
+import '../../../home.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -18,6 +18,7 @@ class _AuthPageState extends State<AuthPage> {
   final TextEditingController _passwordController = TextEditingController();
   final _formKey = GlobalKey<FormState>();
   bool isSignIn = true;
+  bool isLoading = false;
 
   @override
   void dispose() {
@@ -83,6 +84,8 @@ class _AuthPageState extends State<AuthPage> {
           builder: (context, ref, child) => FilledButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
+                isLoading = true;
+                setState(() {});
                 ref
                     .read(authContrllerProvider)
                     .createUserWithEmailAndPassword(
@@ -98,9 +101,10 @@ class _AuthPageState extends State<AuthPage> {
                         ),
                       ),
                     );
+                isLoading = false;
               }
             },
-            child: Text("Devam Et"),
+            child: isLoading ? CircularProgressIndicator() : Text("Devam Et"),
           ),
         ),
         TextButton(onPressed: () {}, child: Text("Şifemi Unuttum")),
@@ -156,6 +160,8 @@ class _AuthPageState extends State<AuthPage> {
           builder: (context, ref, child) => FilledButton(
             onPressed: () {
               if (_formKey.currentState!.validate()) {
+                isLoading = true;
+                setState(() {});
                 ref
                     .read(authContrllerProvider)
                     .signInWithEmailAndPassword(
@@ -165,12 +171,14 @@ class _AuthPageState extends State<AuthPage> {
                     .then((onValue) {
                       Navigator.push(
                         context,
-                        CupertinoPageRoute(builder: (context) => HomePage()),
+                        CupertinoPageRoute(builder: (context) => Home()),
                       );
                     });
+                isLoading = false;
+                setState(() {});
               }
             },
-            child: Text("Giriş Yap"),
+            child: isLoading ? CircularProgressIndicator() : Text("Giriş Yap"),
           ),
         ),
 
