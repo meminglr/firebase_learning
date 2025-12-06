@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../../../home.dart';
+import '../../home/views/home.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -61,10 +61,7 @@ class _AuthPageState extends State<AuthPage> {
             return null;
           },
           controller: _emailController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            hintText: "Email",
-          ),
+          decoration: InputDecoration(hintText: "Email"),
         ),
         TextFormField(
           validator: (value) {
@@ -75,10 +72,7 @@ class _AuthPageState extends State<AuthPage> {
           },
           controller: _passwordController,
           obscureText: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            hintText: "Şifre",
-          ),
+          decoration: InputDecoration(hintText: "Şifre"),
         ),
         Consumer(
           builder: (context, ref, child) => FilledButton(
@@ -137,10 +131,7 @@ class _AuthPageState extends State<AuthPage> {
             return null;
           },
           controller: _emailController,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            hintText: "Email",
-          ),
+          decoration: InputDecoration(hintText: "Email"),
         ),
         TextFormField(
           validator: (value) {
@@ -151,10 +142,7 @@ class _AuthPageState extends State<AuthPage> {
           },
           controller: _passwordController,
           obscureText: true,
-          decoration: InputDecoration(
-            border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-            hintText: "Şifre",
-          ),
+          decoration: InputDecoration(hintText: "Şifre"),
         ),
         Consumer(
           builder: (context, ref, child) => FilledButton(

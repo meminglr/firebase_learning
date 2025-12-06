@@ -29,7 +29,7 @@ class AuthRepository {
 
   Future<void> storeUserInfoToFirebase(UserModel userModel) async {
     userModel.profilePhoto ??=
-        "https://www.iprcenter.gov/image-repository/blank-profile-picture.png/@@images/image.png";
+        "https://static.vecteezy.com/system/resources/previews/045/944/199/non_2x/male-default-placeholder-avatar-profile-gray-picture-isolated-on-background-man-silhouette-picture-for-user-profile-in-social-media-forum-chat-greyscale-illustration-vector.jpg";
     userModel.uid = auth.currentUser!.uid;
 
     await firebaseFirestore

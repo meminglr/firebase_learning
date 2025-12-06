@@ -1,5 +1,5 @@
 import 'package:firebase_learning/features/auth/controller/auth_controller.dart';
-import 'package:firebase_learning/home.dart';
+import 'package:firebase_learning/features/home/views/home.dart';
 import 'package:firebase_learning/models/user_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

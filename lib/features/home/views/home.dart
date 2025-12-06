@@ -1,5 +1,5 @@
-import 'package:firebase_learning/home/views/homepage.dart';
-import 'package:firebase_learning/profile/views/profile_page.dart';
+import 'package:firebase_learning/features/dashboard/views/homepage.dart';
+import 'package:firebase_learning/features/profile/views/profile_page.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatefulWidget {
@@ -21,7 +21,7 @@ class _HomeState extends State<Home> {
         currentIndex: currentIndex,
         onTap: (value) {
           currentIndex = value;
-          setState(() {});
+          setState(() {}); 
         },
         items: [
           BottomNavigationBarItem(
